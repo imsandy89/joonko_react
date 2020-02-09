@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
+import CounterComponent from './CounterComponent';
 
-export default class App extends Component {
+export default class MainComponent extends Component {
   constructor(){
     super();
     this.state = {
       likeCounter: 100,
       dislikeCounter: 25,
       likeFlag: false,
-      dislikeFlag: false
+      dislikeFlag: false,
+      //count: 0
     }
   }
 
@@ -42,10 +44,13 @@ export default class App extends Component {
     }
   }
 
-  classNameSwitch = (...classNames) => {
-    console.log("switch");
-    return classNames.filter(item => !item).join(' ');
-  }
+  /*counterAction = () => {
+    //let count = 0;
+    return () => {
+      this.setState({count: ++this.state.count});
+    }
+  }*/
+
   render() {
     let likes = this.state.likeCounter;
     let dislikes = this.state.dislikeCounter;
@@ -62,12 +67,9 @@ export default class App extends Component {
           <button className={`dislike-button  ${this.state.dislikeFlag ? 'disliked' : ' '}`} onClick={() => this.dislikeAction()}> Dislike | 
               <span className="dislike-counter" >{dislikes}</span>
           </button>
-
-          {/*className={  this.classNameSwitch(
-              'dislike-button',
-              this.state.dislikeFlag === true && 'disliked'
-            )} */}
       </div>
+      <CounterComponent></CounterComponent>
+      
       <style>{`
           .like-button, .dislike-button {
             font-size: 1rem;
